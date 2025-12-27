@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="29.2.9">
+  <diagram name="Page-1" id="DOgpyI1IZUH3u3dN_sn9">
+    <mxGraphModel dx="872" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1_9NXM8rBWoFCO-musJK-12" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1_9NXM8rBWoFCO-musJK-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Paciente solicita cita" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-13" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1_9NXM8rBWoFCO-musJK-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sistema muestra el formulario" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-15" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1_9NXM8rBWoFCO-musJK-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Paciente ingresa datos" vertex="1">
+          <mxGeometry height="60" width="120" x="365" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-18" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1_9NXM8rBWoFCO-musJK-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Hay disponibilidad?" vertex="1">
+          <mxGeometry height="110" width="95" x="378" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-17" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1_9NXM8rBWoFCO-musJK-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Registrar cita" vertex="1">
+          <mxGeometry height="60" width="120" x="180" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Confirmar cita al paciente" vertex="1">
+          <mxGeometry height="60" width="120" x="180" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Si" vertex="1">
+          <mxGeometry height="30" width="60" x="290" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Mostrar mensaje de no disponibilidad de citas" vertex="1">
+          <mxGeometry height="60" width="120" x="520" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-21" edge="1" parent="1" source="1_9NXM8rBWoFCO-musJK-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.667;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="1_9NXM8rBWoFCO-musJK-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1_9NXM8rBWoFCO-musJK-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="NO" vertex="1">
+          <mxGeometry height="30" width="60" x="540" y="460" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
