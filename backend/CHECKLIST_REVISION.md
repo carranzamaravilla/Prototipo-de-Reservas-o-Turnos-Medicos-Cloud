@@ -16,8 +16,7 @@ Para garantizar la estabilidad del sistema en esta etapa de desarrollo, se han v
 ### 🖥️ Interfaz y Reportes
 - [x] **Diseño Responsivo:** Interfaz adaptada para uso en navegadores de escritorio y dispositivos móviles.
 - [x] **Búsqueda Dinámica:** Filtros funcionales por nombre, especialidad y estado de cita.
-- [x] **Módulo de Exportación:** Generación de archivos PDF con la agenda médica del día.
-- [x] **Notificaciones:** Sistema de envío de correos electrónicos de confirmación mediante `MailApp`.
+- [x] **Notificaciones:** Sistema de envío de correos electrónicos de confirmación.`.
 
 ---
 *Este checklist refleja los estándares de calidad aplicados durante la fase de desarrollo y pruebas de la Fase 2.*
