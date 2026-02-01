@@ -1,0 +1,133 @@
+/*--------- 1. BODY -------*/
+      body {
+        background: #f4f4f8;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+
+/*-------2. MAIN ------------*/
+      .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 1000px;
+      margin: 80px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+
+      h1 {
+        margin-top: 70px;
+        text-align: center;
+        font-size: 70px;
+        color: #1976d2;
+      }
+
+        h2 {
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+      padding-bottom: 5px;
+      margin-top: 0;
+      text-align: center;    /*---Se centro el texto---*/
+    }
+
+        label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #1976d2; /*----Se agrego color al label*/
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      text-align: center; /*----Se centró las entradas de los input para una mejor experiencia*/
+    }
+
+    button {
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 15px; /*---Se agrego bordes radius al boton*/
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+/*------------TABLE---------*/
+        table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    .acciones button {
+      width: auto;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-right: 4px;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, tr, th, td {
+        display: block;
+      }
+      th {
+        background: #1976d2;
+        color: white;
+      }
+    }
+
+    /*-------- FOOTER-------*/
+
+    .footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.footer__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer__nav {
+  margin-bottom: 24px;
+}
+
+.footer__link {
+  color: #ffffff;
+  margin: 0 16px;
+  display: inline-block;
+}
+
+.footer__link:hover {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.footer__copyright {
+  color: #9ca3af;
+  margin-bottom: 60px;
+}
+
+.footer__credits {
+  color: #9ca3af;
+  font-size: 14px;
+}
