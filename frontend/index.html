@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Styles_ciss.css">
+</head>
+
+<body>
+
+  <h1>Clinica Integral Santa Salud CISS</h1>
+
+<!-- ================= LOGIN ================= -->
+<div class="container" id="loginBox">
+  <h2>Acceso Administrador</h2>
+
+  <label>Usuario</label>
+  <input id="u" type="text" placeholder="Ingrese su usuario"> <!--se agrego un placeholder y un type tipo text-->
+
+  <label>Contraseña</label>
+  <input id="p" type="password" placeholder="Ingrese su contraseña"> <!--Se agrego un placeholder-->
+
+  <button onclick="login()">Ingresar</button>
+</div>
+
+<!-- ================= PANEL ================= -->
+<div id="panel" style="display:none">
+
+  <!-- ===== AGENDAR ===== -->
+  <div class="container">
+    <h2>Agendar Nueva Cita</h2>
+
+    <label>Paciente</label>
+    <input id="aNombre">
+
+    <label>Especialidad</label>
+    <select id="aMotivo">
+      <option value="">Seleccione</option>
+      <option>Medicina General</option>
+      <option>Medicina Interna</option>
+      <option>Pediatría</option>
+      <option>Ginecología</option>
+    </select>
+
+    <label>Fecha</label>
+    <input type="date" id="aFecha">
+
+    <label>Hora</label>
+    <input type="time" id="aHora">
+
+    <button type="button" onclick="agendar()">Agendar Cita</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <!-- ===== LISTADO ===== -->
+  <div class="container">
+    <h2>Citas Agendadas</h2>
+
+    <label>Fecha</label>
+    <input type="date" id="fFecha">
+
+    <label>Especialidad</label>
+    <select id="fDoctor">
+      <option value="">Todos</option>
+      <option>Medicina General</option>
+      <option>Medicina Interna</option>
+      <option>Pediatría</option>
+      <option>Ginecología</option>
+    </select>
+
+    <label>Paciente</label>
+    <input id="fPaciente">
+
+    <label>Hora</label>
+    <input type="time" id="fHora">
+
+    <label>Estado</label>
+    <select id="fEstado">
+      <option value="">Todos</option>
+      <option>Agendada</option>
+      <option>Cancelada</option>
+      <option>Completada</option>
+      <option>No asistio</option>
+    </select>
+
+    <button onclick="cargarCitas()">Buscar</button>
+
+    <table id="citasTabla"></table>
+  </div>
+
+</div>
+
+<script>
+/* ========= LOGIN ========= */
+function login() {
+  google.script.run.withSuccessHandler(res => {
+    if (res.success) {
+      loginBox.style.display = "none";
+      panel.style.display = "block";
+      cargarCitas();
+    } else {
+      alert("Credenciales incorrectas");
+    }
+  }).loginAdmin(u.value, p.value);
+}
+
+/* ========= AGENDAR ========= */
+function agendar() {
+  const datos = {
+    nombre: aNombre.value,
+    motivo: aMotivo.value,
+    fecha: aFecha.value,
+    hora: aHora.value
+  };
+
+  google.script.run.withSuccessHandler(r => {
+    msg.textContent = r.message || "Cita agendada";
+    cargarCitas();
+  }).agendarCita(datos);
+}
+
+/* ========= CARGAR ========= */
+function cargarCitas() {
+  const filtros = {
+    fecha: fFecha.value || null,
+    motivo: fDoctor.value || null,
+    nombre: fPaciente.value || null,
+    hora: fHora.value || null,
+    estado: fEstado.value || null
+  };
+
+  google.script.run.withSuccessHandler(mostrarCitas)
+    .obtenerCitas(filtros);
+}
+
+/* ========= MOSTRAR ========= */
+function mostrarCitas(citas) {
+  console.log("CITAS RECIBIDAS:", citas);
+
+  citasTabla.innerHTML = "";
+
+  if (!citas || citas.length === 0) {
+    citasTabla.innerHTML = "<tr><td>No hay citas</td></tr>";
+    return;
+  }
+
+  let html = `
+    <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Paciente</th>
+      <th>Especialidad</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>`;
+
+  citas.forEach(c => {
+    html += `
+      <tr>
+        <td>${c.fecha}</td>
+        <td>${c.hora}</td>
+        <td>${c.nombre}</td>
+        <td>${c.motivo}</td>
+        <td>${c.estado}</td>
+        <td class="acciones">
+          <button onclick="estado('${c.id}','Completada')">✔</button>
+          <button onclick="estado('${c.id}','Cancelada')">✖</button>
+          <button onclick="estado('${c.id}','No asistio')">NA</button>
+          <button onclick="editar('${c.id}','${c.fecha}','${c.hora}')">✎</button>
+        </td>
+      </tr>`;
+  });
+
+  citasTabla.innerHTML = html;
+}
+
+/* ========= ESTADO ========= */
+function estado(id, estado) {
+  google.script.run.withSuccessHandler(cargarCitas)
+    .modificarCita(id, { estado });
+}
+
+/* ========= EDITAR FECHA/HORA ========= */
+function editar(id, fechaActual, horaActual) {
+  const nuevaFecha = prompt("Ingrese nueva fecha (YYYY-MM-DD):", fechaActual);
+  if (!nuevaFecha) return;
+
+  const nuevaHora = prompt("Ingrese nueva hora (HH:MM):", horaActual);
+  if (!nuevaHora) return;
+
+  google.script.run.withSuccessHandler(cargarCitas)
+    .editarCita(id, { fecha: nuevaFecha, hora: nuevaHora });
+}
+</script>
+
+ <!-------- Footer ------------>
+  <footer class="footer">
+    <div class="footer__container">
+      <nav class="footer__nav">
+        <a href="#inicio" class="footer__link"></a>
+        <a href="#sobre-mi" class="footer__link"></a>
+        <a href="#proyectos" class="footer__link"></a>
+        <a href="#habilidades" class="footer__link"></a>
+        <a href="#contacto" class="footer__link"></a>
+      </nav>
+
+      <p class="footer__copyright">
+        © Derechos Reservados
+      </p>
+
+      <p class="footer__credits">
+      
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
