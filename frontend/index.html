@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?!= include('estilos'); ?>
+  <style>
+    /* ===== Estilos para el nuevo login SSO ===== */
+    #logoutBtn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    #logoutBtn:hover { background-color: #c0392b; }
+
+    .login-status {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    #user-display {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Clinica Integral Santa Salud CISS</h1>
+
+  <div class="container" id="loginBox">
+    <h2>Acceso Administrador</h2>
+    <p class="login-status">El acceso está restringido a personal autorizado mediante <strong>Lista Blanca</strong>.</p>
+    
+    <button onclick="login()" style="background-color: #4285F4;">
+      Verificar identidad con Google SSO
+    </button>
+    
+    <p id="loginMsg" style="margin-top:10px; color:red; display:none;"></p>
+  </div>
+
+  <div id="panel" style="display:none">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <button id="logoutBtn" onclick="logout()">Cerrar sesión</button>
+      <p class="login-status">Usuario activo: <span id="user-display"></span></p>
+    </div>
+
+    <div class="container container_agenda">
+      <h2>Agendar Nueva Cita</h2>
+
+      <label>Paciente</label>
+      <input id="aNombre">
+
+      <label>Correo electrónico:</label>
+      <input type="email" id="correo" required>
+
+      <label>Especialidad</label>
+      <select id="aMotivo">
+        <option value="">Seleccione</option>
+        <option>Medicina General</option>
+        <option>Medicina Interna</option>
+        <option>Pediatría</option>
+        <option>Ginecología</option>
+      </select>
+
+      <label>Fecha</label>
+      <input type="date" id="aFecha">
+
+      <label>Hora</label>
+      <input type="time" id="aHora">
+
+      <button type="button" onclick="agendar()">Agendar Cita</button>
+      <p id="msg"></p>
+    </div>
+
+    <div class="feedback" id="fedback_exito">
+      <div class="icono">✓</div>
+      <h2>¡Cita agendada exitosamente!</h2>
+      <p>Se ha registrado la trazabilidad del usuario efectivo.</p>
+    </div>
+
+    <div class="container">
+      <h2>Citas Agendadas</h2>
+      <label>Fecha</label>
+      <input type="date" id="fFecha">
+      <label>Especialidad</label>
+      <select id="fDoctor">
+        <option value="">Todos</option>
+        <option>Medicina General</option>
+        <option>Medicina Interna</option>
+        <option>Pediatría</option>
+        <option>Ginecología</option>
+      </select>
+      <label>Paciente</label>
+      <input id="fPaciente">
+      <label>Hora</label>
+      <input type="time" id="fHora">
+      <label>Estado</label>
+      <select id="fEstado">
+        <option value="">Todos</option>
+        <option>Agendada</option>
+        <option>Cancelada</option>
+        <option>Completada</option>
+        <option>No asistio</option>
+      </select>
+      <button onclick="cargarCitas()">Buscar</button>
+      <table id="citasTabla"></table>
+    </div>
+  </div>
+
+  <script>
+    const loginBox = document.getElementById("loginBox");
+    const panel = document.getElementById("panel");
+    const userDisplay = document.getElementById("user-display");
+    const loginMsg = document.getElementById("loginMsg");
+
+    window.onload = function () {
+      const sesion = localStorage.getItem("sesionActiva");
+      const userMail = localStorage.getItem("userMail");
+      
+      if (sesion === "true" && userMail) {
+        mostrarPanel(userMail);
+      }
+    };
+
+    /* ========= LOGIN SSO ========= */
+    function login() {
+      loginMsg.style.display = "none";
+      
+      google.script.run.withSuccessHandler(res => {
+        if (res.success) {
+          localStorage.setItem("sesionActiva", "true");
+          localStorage.setItem("userMail", res.usuario);
+          mostrarPanel(res.usuario);
+        } else {
+          loginMsg.textContent = res.message;
+          loginMsg.style.display = "block";
+        }
+      }).loginAdmin(); // Llamada sin parámetros (seguridad SSO)
+    }
+
+    function mostrarPanel(email) {
+      loginBox.style.display = "none";
+      panel.style.display = "block";
+      userDisplay.textContent = email;
+      cargarCitas();
+    }
+
+    /* ========= LOGOUT ========= */
+    function logout() {
+      localStorage.removeItem("sesionActiva");
+      localStorage.removeItem("userMail");
+      panel.style.display = "none";
+      loginBox.style.display = "block";
+    }
+
+    /* ========= AGENDAR CITA (CON TRAZABILIDAD) ========= */
+    function agendar() {
+      const datos = {
+        nombre: aNombre.value,
+        correo: correo.value,
+        motivo: aMotivo.value,
+        fecha: aFecha.value,
+        hora: aHora.value
+      };
+
+      if(!datos.nombre || !datos.fecha || !datos.hora || !datos.motivo) {
+        alert("Por favor rellene todos los campos");
+        return;
+      }
+
+      google.script.run.withSuccessHandler(r => {
+        if (r.success) {
+          msg.textContent = r.message;
+          msg.style.color = "green";
+          fedback_exito.style.display = "block";
+          // Limpiar campos...
+          aNombre.value = ""; correo.value = ""; aMotivo.value = ""; aFecha.value = ""; aHora.value = "";
+          cargarCitas();
+        } else {
+          alert("Error: " + r.message);
+        }
+        setTimeout(() => { fedback_exito.style.display = "none"; msg.textContent = ""; }, 4000);
+      }).agendarCita(datos);
+    }
+
+    /* ========= CARGAR CITAS ========= */
+    function cargarCitas() {
+      const filtros = {
+        fecha: fFecha.value || null,
+        motivo: fDoctor.value || null,
+        nombre: fPaciente.value || null,
+        hora: fHora.value || null,
+        estado: fEstado.value || null
+      };
+      google.script.run.withSuccessHandler(mostrarCitas).obtenerCitas(filtros);
+    }
+
+    /* ========= MOSTRAR CITAS (TABLA) ========= */
+    function mostrarCitas(citas) {
+      citasTabla.innerHTML = "";
+      if (!citas || citas.length === 0) {
+        citasTabla.innerHTML = "<tr><td>No hay citas</td></tr>";
+        return;
+      }
+      let html = `<tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Correo</th><th>Especialidad</th><th>Estado</th><th>Acciones</th></tr>`;
+      citas.forEach(c => {
+        html += `<tr>
+          <td>${c.fecha}</td><td>${c.hora}</td><td>${c.nombre}</td><td>${c.correo}</td><td>${c.motivo}</td><td>${c.estado}</td>
+          <td class="acciones">
+            <button onclick="estado('${c.id}','Completada')">✔</button>
+            <button onclick="estado('${c.id}','Cancelada')">✖</button>
+            <button onclick="estado('${c.id}','No asistio')">NA</button>
+            <button onclick="editar('${c.id}','${c.fecha}','${c.hora}')">✎</button>
+          </td>
+        </tr>`;
+      });
+      citasTabla.innerHTML = html;
+    }
+
+    /* ========= EDITAR CON TRAZABILIDAD ========= */
+    function editar(id, fechaActual, horaActual) {
+      const nuevaFecha = prompt("Ingrese nueva fecha (YYYY-MM-DD):", fechaActual);
+      if (!nuevaFecha) return;
+      const nuevaHora = prompt("Ingrese nueva hora (HH:MM):", horaActual);
+      if (!nuevaHora) return;
+
+      google.script.run
+        .withSuccessHandler(() => { alert("Cita reagendada con éxito"); cargarCitas(); })
+        .withFailureHandler((err) => { alert("ERROR: " + err.message); })
+        .editarCita(id, { fecha: nuevaFecha, hora: nuevaHora });
+    }
+
+    /* ========= CAMBIAR ESTADO CON TRAZABILIDAD ========= */
+    function estado(idCita, nuevoEstado) {
+      google.script.run
+        .withSuccessHandler(function(res) {
+          if(res.success) { cargarCitas(); } 
+          else { alert("Error: " + res.message); }
+        })
+        .modificarCita(idCita, { estado: nuevoEstado });
+    }
+  </script>
+
+  <footer class="footer">
+    <p class="footer__copyright">© 2026 Clínica Santa Salud - Sistema de Gestión Cloud</p>
+  </footer>
+</body>
+</html>
