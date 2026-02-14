@@ -1,0 +1,249 @@
+<style> 
+/*--------- 1. BODY -------*/
+      body {
+        background: #c3c4c4;
+        font-family: Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+
+/*-------2. MAIN ------------*/
+      .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 1000px;
+      margin: 80px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+    }
+
+      .container_agenda {
+      display: active;
+      background: linear-gradient(180deg, #e1eff2, #c2dde3);
+      border-left: 6px solid #1e73d8;
+      border-right: 6px solid #1e73d8;
+    }
+
+    .container_listado {
+      background: linear-gradient(180deg, #e1eff2, #c2dde3);
+      border-left: 6px solid #1e73d8;
+      border-right: 6px solid #1e73d8;
+    }
+
+    .container_logout {
+      text-align: center;
+    }
+
+    /* ===== Botón de logout ===== */
+    #logoutBtn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      display: inline-block;
+      max-width: 150px;
+    }
+
+    #logoutBtn:hover {
+      background-color: #c0392b;
+    }
+
+  /*-------FEEDBACK DE EXITO-------------*/
+    .feedback {
+  display: none; /* Oculto por defecto */
+  max-width: 360px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  font-family: Arial, sans-serif;
+}
+
+.icono {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border: 3px solid green;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.feedback h2 {
+  color: #1f4fd8;
+  margin-bottom: 10px;
+}
+
+.feedback p {
+  color: #555;
+  font-size: 14px;
+}
+
+    p {
+      color: #1976d2;
+      display: flex;
+      font-size: 40px ;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+      h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 70px;
+        color: #1976d2;
+      }
+
+        h2 {
+      color: #1976d2;
+      border-bottom: 2px solid #1976d2;
+      padding-bottom: 5px;
+      margin-top: 0;
+      text-align: center;    /*---Se centro el texto---*/
+    }
+
+        label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #1976d2; /*----Se agrego color al label*/
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      text-align: center; /*----Se centró las entradas de los input para una mejor experiencia*/
+    }
+
+    button {
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 15px; /*---Se agrego bordes radius al boton*/
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+
+/*------------TABLE---------*/
+        table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    table tr:first-child th {
+  background-color: #198754; /* verde clínico */
+  color: #fff;
+  padding: 12px;
+  }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    .acciones button {
+      width: auto;
+      padding: 4px 6px;
+      font-size: 12px;
+      margin-right: 4px;
+    }
+
+   /* SE AGREGO DIFERENTES COLORES A LOS BOTONES DE ACCIONES*/ 
+/* ✔ Primer botón (Completada) */
+.acciones button:nth-child(1) {
+  background-color: #28a745;
+}
+
+.acciones button:nth-child(1):hover {
+  background-color: #218838;
+}
+
+/* ✖ Segundo botón (Cancelada) */
+.acciones button:nth-child(2) {
+  background-color: #dc3545;
+}
+
+.acciones button:nth-child(2):hover {
+  background-color: #c82333;
+}
+
+/* NA Tercer botón */
+.acciones button:nth-child(3) {
+  background-color: #007bff;
+}
+
+.acciones button:nth-child(3):hover {
+  background-color: #0069d9;
+}
+
+/* ✏ Cuarto botón (Editar) */
+.acciones button:nth-child(4) {
+  background-color: #6c757d;
+}
+
+.acciones button:nth-child(4):hover {
+  background-color: #5a6268;
+}
+
+    @media (max-width: 768px) {
+      table, thead, tbody, tr, th, td {
+        display: block;
+      }
+      th {
+        background: #1976d2;
+        color: white;
+      }
+    }
+
+    /*-------- FOOTER-------*/
+.footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%; 
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0;
+    width: 100%; 
+}
+
+.footer__copyright {
+  color: #9ca3af;
+  margin-bottom: 60px;
+  font-size: 17px;
+  margin-top: 8px;
+}
+
+.footer__credits {
+  color: #9ca3af;
+  font-size: 14px;
+}
+</style>
