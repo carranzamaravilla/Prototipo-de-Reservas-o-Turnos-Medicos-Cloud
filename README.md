@@ -27,17 +27,17 @@ Paciente → Formulario Web → Apps Script → Google Sheets → Notificación
 /docs → Documentación del proyecto y diagramas.
 /frontend → Interfaz del formulario web.
 
-## Consideraciones de seguridad
+## Consideraciones de seguridad (Actualizacion)
 
-**Seguridad por Capas:** El sistema está diseñado para que solo cuentas de Google autorizadas accedan a la infraestructura. Nota: Para efectos de revisión académica, se ha deshabilitado temporalmente la restricción de correo de Google para permitir el acceso directo al portal y poder colocar las credenciales previamente asignadas. .
+**Seguridad por Lista Blanca (Whitelist):** Se ha implementado un filtro de seguridad robusto donde el sistema solo permite el acceso a cuentas de Google autorizadas previamente en la base de datos
 
-**Autenticación y 2FA:** El diseño original exige Doble Factor de Autenticación (2FA) mediante la cuenta de Google, eliminando el riesgo de contraseñas robadas.
+**Autenticación y 2FA:** Se utiliza la infraestructura de Google para la autenticación, eliminando el uso de credenciales estáticas y permitiendo el uso de Doble Factor de Autenticación.
 
 **Separación Back/Front:** El código y la base de datos están protegidos en el servidor; el personal solo interactúa con la interfaz de trabajo, evitando manipulaciones accidentales de la base de datos.
 
 **Trazabilidad Total:** Cada movimiento genera una marca de tiempo y un ID único (UUID). Esto permite saber con exactitud quién, cuándo y qué se registró o modificó, garantizando un control del 100% sobre la agenda.
 
-**Regla 10/90:** El sistema facilita el cambio periódico de claves desde el código fuente, promoviendo la responsabilidad del usuario en el cuidado de sus accesos.
+**Registro de Auditoría:** El sistema vincula cada cambio al correo electrónico del usuario que inició sesión, garantizando el cumplimiento de los procesos clínicos.
 
 
 ## Tipo de proyecto
