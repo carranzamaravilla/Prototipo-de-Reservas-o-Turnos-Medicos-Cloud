@@ -18,4 +18,7 @@ Se realizaron pruebas funcionales (flujo completo de registro y almacenamiento),
 ## Criterios de aceptación
 El sistema debe permitir el acceso exclusivamente a usuarios autenticados, impedir el ingreso con credenciales inválidas, validar correctamente los datos obligatorios, registrar la información sin errores en la base de datos y mantener estabilidad durante su ejecución sin presentar fallos críticos.
 
+## Documentación 
 
+El siguiente enlace lo llevará al documento en donde se describe los resultados de las pruebas:
+[Documento_tester](docs/analisis/docs/Documento_Tester.pdf)
