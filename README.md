@@ -31,7 +31,7 @@ Paciente → Formulario Web → Apps Script → Google Sheets → Notificación
 
 **Seguridad por Lista Blanca (Whitelist):** Se ha implementado un filtro de seguridad robusto donde el sistema solo permite el acceso a cuentas de Google autorizadas previamente en la base de datos
 
-**Autenticación y 2FA:** Se utiliza la infraestructura de Google para la autenticación, eliminando el uso de credenciales estáticas y permitiendo el uso de Doble Factor de Autenticación.
+**Autenticación a través de SSO Google:** Se utiliza la infraestructura de Google para la autenticación, eliminando el uso de credenciales estáticas y permitiendo el uso de Doble Factor de Autenticación.
 
 **Separación Back/Front:** El código y la base de datos están protegidos en el servidor; el personal solo interactúa con la interfaz de trabajo, evitando manipulaciones accidentales de la base de datos.
 
