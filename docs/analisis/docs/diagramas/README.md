@@ -15,7 +15,7 @@ El sistema permite al personal de la clínica centralizar la agenda médica, eli
 
 ---
 
-### 🔄 Diagrama de Flujo de Reserva (Actualizado)
+### Diagrama de Flujo de Reserva (Actualizado)
 El flujo de trabajo ha sido actualizado para reflejar un proceso de gestión profesional y centralizado:
 
 * **Autenticación Obligatoria:** Se ha implementado un nodo de decisión al inicio del flujo. Si no se detecta una sesión activa, el sistema redirige forzosamente a la **Pantalla de Login o Inicio**.
