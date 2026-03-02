@@ -18,9 +18,8 @@ de cita, y enviar notificaciones de confirmación al paciente.
 Paciente → Formulario Web → Apps Script → Google Sheets → Notificación
 
 ## 🔗 Acceso a la Aplicación
-**Link del Proyecto:** [Abrir Portal de Citas Médicas](https://script.google.com/macros/s/AKfycbwVpEVtDvRmk58ovS4SwM72_8JsR1Y5ccTrIhBbEVeqQXeWxhyhHCCfpLnMGgnF4mZ78A/exec)
+**Link del Proyecto:** [Abrir Portal de Citas Médicas](https://script.google.com/macros/s/AKfycbzVeHOQCYUNm3PLnIuWDww1gCeWLvG3rKzwVkkyn882mQxxe-aJdCA1CWqXsg9H7A2RXA/exec)
 
-*Nota: Para efectos de revisión académica, el acceso se ha configurado de forma pública (sin requerir inicio de sesión en Google) para facilitar las pruebas de la interfaz y lógica de negocio.*
 
 ## Estructura del repositorio
 /backend → Lógica del sistema en Google Apps Script.
